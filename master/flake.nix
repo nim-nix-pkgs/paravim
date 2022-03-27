@@ -11,6 +11,7 @@
   inputs.src-paravim-master.ref   = "refs/heads/master";
   inputs.src-paravim-master.owner = "paranim";
   inputs.src-paravim-master.repo  = "paravim";
+  inputs.src-paravim-master.dir   = "";
   inputs.src-paravim-master.type  = "github";
   
   inputs."paranim".owner = "nim-nix-pkgs";
