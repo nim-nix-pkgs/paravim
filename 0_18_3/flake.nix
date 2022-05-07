@@ -7,11 +7,11 @@
   inputs.flakeNimbleLib.type  = "github";
   inputs.flakeNimbleLib.inputs.nixpkgs.follows = "nixpkgs";
   
-  inputs.src-paravim-0_16_1.flake = false;
-  inputs.src-paravim-0_16_1.ref   = "refs/tags/0.16.1";
-  inputs.src-paravim-0_16_1.owner = "paranim";
-  inputs.src-paravim-0_16_1.repo  = "paravim";
-  inputs.src-paravim-0_16_1.type  = "github";
+  inputs.src-paravim-0_18_3.flake = false;
+  inputs.src-paravim-0_18_3.ref   = "refs/tags/0.18.3";
+  inputs.src-paravim-0_18_3.owner = "paranim";
+  inputs.src-paravim-0_18_3.repo  = "paravim";
+  inputs.src-paravim-0_18_3.type  = "github";
   
   inputs."paranim".owner = "nim-nix-pkgs";
   inputs."paranim".ref   = "master";
@@ -37,16 +37,24 @@
   inputs."paratext".inputs.nixpkgs.follows = "nixpkgs";
   inputs."paratext".inputs.flakeNimbleLib.follows = "flakeNimbleLib";
   
+  inputs."illwill".owner = "nim-nix-pkgs";
+  inputs."illwill".ref   = "master";
+  inputs."illwill".repo  = "illwill";
+  inputs."illwill".dir   = "v0_3_0";
+  inputs."illwill".type  = "github";
+  inputs."illwill".inputs.nixpkgs.follows = "nixpkgs";
+  inputs."illwill".inputs.flakeNimbleLib.follows = "flakeNimbleLib";
+  
   outputs = { self, nixpkgs, flakeNimbleLib, ...}@deps:
   let 
     lib  = flakeNimbleLib.lib;
-    args = ["self" "nixpkgs" "flakeNimbleLib" "src-paravim-0_16_1"];
+    args = ["self" "nixpkgs" "flakeNimbleLib" "src-paravim-0_18_3"];
     over = if builtins.pathExists ./override.nix 
            then { override = import ./override.nix; }
            else { };
   in lib.mkRefOutput (over // {
     inherit self nixpkgs ;
-    src  = deps."src-paravim-0_16_1";
+    src  = deps."src-paravim-0_18_3";
     deps = builtins.removeAttrs deps args;
     meta = builtins.fromJSON (builtins.readFile ./meta.json);
   } );
